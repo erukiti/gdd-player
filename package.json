@@ -1,0 +1,20 @@
+{
+  "name": "gdd-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron src/index.js"
+  },
+  "author": "",
+  "license": "Apache License version 2.0",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "electron-prebuilt": "^0.34.0",
+    "mp4-parser": "^0.3.0",
+    "node-ffprobe": "^1.2.2",
+    "rx": "^4.0.6",
+    "webrx": "^1.0.0"
+  }
+}

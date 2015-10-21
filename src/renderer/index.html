@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./index.css">
+<body>
+
+<video data-bind="attr: {src: path}" autoplay loop></video>
+
+<script>
+  window.onerror = function(message, file, line, column, err) {
+    console.dir(err.stack);
+  }
+  Rx = require('rx');
+  wx = require('../../node_modules/webrx/dist/web.rx');
+  require('coffee-script/register');
+  require('./index.coffee');
+</script>
+</body>
+</html>
