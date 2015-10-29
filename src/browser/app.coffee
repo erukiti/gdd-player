@@ -18,6 +18,18 @@ Menu = require 'menu'
 ipc = require 'ipc'
 fs = require 'fs'
 probe = require 'node-ffprobe'
+Tray = require 'tray'
+
+$ = require('nodobjc')
+$.import('Foundation')
+$.import('Cocoa')
+
+ipc.on 'log', (ev, arg) =>
+  # console.dir ev
+  console.log arg
+
+
+appIcon = null
 
 app.on 'window-all-closed', ->
   app.quit()
@@ -31,9 +43,20 @@ openBrowser = (packet) ->
     width: packet.width
     height: packet.height
     transparent: true
+    'always-on-top': true
   }
   win.loadUrl "file://#{__dirname}/../renderer/index.html"
   win.webContents.on 'did-finish-load', =>
+
+    appIcon = new Tray('images/rabbit_icon.png')
+    contextMenu = Menu.buildFromTemplate([
+      {label: '終了', accelerator: 'Command+Q', click: => app.quit()}
+    ])
+    appIcon.setContextMenu contextMenu
+    appIcon.setToolTip "GDD player: #{packet.path}"
+
+    $.NSApplication('sharedApplication')('windows')('objectAtIndex', 0)('setIgnoresMouseEvents', $.YES)
+
     win.webContents.send 'open', packet
   win
 
@@ -57,4 +80,3 @@ app.on 'ready', ->
             path: path
             width: width
             height: height
-

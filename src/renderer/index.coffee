@@ -21,6 +21,7 @@ class MainViewModel
 		ipc.on 'open', (packet) =>
 			@path(packet.path)
 
+
 mainViewModel = new MainViewModel()
 
 wx.applyBindings(mainViewModel)
