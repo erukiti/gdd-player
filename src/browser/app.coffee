@@ -48,7 +48,7 @@ openBrowser = (packet) ->
   win.loadUrl "file://#{__dirname}/../renderer/index.html"
   win.webContents.on 'did-finish-load', =>
 
-    appIcon = new Tray('images/rabbit_icon.png')
+    appIcon = new Tray('images/rabbit-tray.png')
     contextMenu = Menu.buildFromTemplate([
       {label: '終了', accelerator: 'Command+Q', click: => app.quit()}
     ])
